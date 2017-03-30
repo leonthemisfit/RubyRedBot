@@ -17,5 +17,9 @@ module Mail
         @smtp.send_message(msg, sender, recipient)
       end
     end
+
+    def send_message(message)
+      self.send(message.message, message.from, message.to)
+    end
   end
 end
