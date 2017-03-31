@@ -20,6 +20,17 @@ module Plugins
       self.add_commands(mod)
     end
 
+    def unload_module(name)
+      mod = @modules[name]
+      self.rem_commands(mod)
+      @modules[name] = nil
+    end
+
+    def reload_module(name)
+      self.unload_module(name)
+      self.load_module(name)
+    end
+
     def add_command(command, module_name)
       @commands[command] = module_name
     end
