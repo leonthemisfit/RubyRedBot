@@ -30,6 +30,16 @@ module Plugins
       end
     end
 
+    def rem_command(name)
+      @commands[name] = nil
+    end
+
+    def rem_commands(mod)
+      mod.commands.each do |cmd|
+        self.rem_command(cmd)
+      end
+    end
+
     def execute_command(command, sender, arg_str)
       mod_name = @commands[command]
       if mod_name != nil
