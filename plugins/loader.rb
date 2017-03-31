@@ -23,9 +23,10 @@ module Plugins
       @commands[command] = module_name
     end
 
-    def add_commands(mod, module_name)
+    def add_commands(mod)
+      name = mod.name
       mod.commands().each do |cmd|
-        add_command(cmd, module_name)
+        add_command(cmd, name)
       end
     end
 
