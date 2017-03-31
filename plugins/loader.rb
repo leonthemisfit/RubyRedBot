@@ -6,13 +6,17 @@ module Plugins
       @sock = sock
       Dir["#{path}/*.rb"].each do |file|
         if file != "loader.rb"
-          load(file)
-          mod = Plugins.get_module
-          name = mod.name
-          @modules[name] = mod
-          self.add_commands(mod, name)
+          self.load_module(file)
         end
       end
+    end
+
+    def load_module(path)
+      load(path)
+      mod = Plugins.get_module
+      name = mod.name
+      @modules[name] = mod
+      self.add_commands(mod, name)
     end
 
     def add_command(command, module_name)
