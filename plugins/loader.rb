@@ -16,7 +16,7 @@ module Plugins
       mod = Plugins.get_module
       name = mod.name
       @modules[name] = mod
-      self.add_commands(mod, name)
+      self.add_commands(mod)
     end
 
     def add_command(command, module_name)
