@@ -8,7 +8,7 @@ module Plugins
         if file != "loader.rb"
           load(file)
           mod = Plugins.get_module
-          name = Plugins.get_name
+          name = mod.name
           @modules[name] = mod
           self.add_commands(mod, name)
         end
