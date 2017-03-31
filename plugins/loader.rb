@@ -4,17 +4,18 @@ module Plugins
       @modules = Hash.new
       @commands = Hash.new
       @sock = sock
+      @path = path
       Dir["#{path}/*.rb"].each do |file|
         if file != "loader.rb"
-          self.load_module(file)
+          name = File.basename(file, ".rb")
+          self.load_module(name)
         end
       end
     end
 
-    def load_module(path)
-      load(path)
+    def load_module(name)
+      load("#{@path}/#{name}.rb")
       mod = Plugins.get_module
-      name = mod.name
       @modules[name] = mod
       self.add_commands(mod)
     end
